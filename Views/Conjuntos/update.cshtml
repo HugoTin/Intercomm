@@ -82,7 +82,9 @@
 
                 <!-- BOTÂO EXCLUIR - FAZ NADA - FUTURO BOTÂO MODAL EXLUIR -->
                 <div class="row mt-2">   
-                    @* <button class="btn btn-danger" type="button">Excluir</button> *@
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal">
+                        Deletar
+                    </button>
                 </div>
             </fieldset>
         </div>
@@ -98,12 +100,35 @@
                         </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        DESEJA ALTERAR AS INFORMAÇÕES DO CONTRATO ATUAL?
+                        DESEJA ALTERAR AS INFORMAÇÕES DO CONJUNTO ATUAL?
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NÂO</button>
                     <button class="btn btn-primary">SIM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DELETE -->
+    <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteTitleModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 class="modal-title" id="DeleteTitleModal">DELETAR</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        DESEJA DELETAR AS INFORMAÇÕES DO CONJUNTO ATUAL?
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NÂO</button>
+                    <a href="/conjuntos/delete?idConjunto=@Model.IdConjunto">
+                        <button type="button" class="btn btn-primary">SIM</button>
+                    </a>
                 </div>
             </div>
         </div>

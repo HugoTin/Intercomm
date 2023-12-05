@@ -119,9 +119,11 @@ public class ConjuntosData : Database, IConjuntosData
     /*
     ----- DELETE ------
     */
-    public void Delete(int IdConjunto)
+    public void Delete(int idConjunto)
     {
+        string query = @"DELETE FROM Conjuntos WHERE idConjunto = @idConjunto";
 
+        connection.Execute(query, new{ idConjunto});
     }
 
 

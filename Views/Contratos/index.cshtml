@@ -41,9 +41,9 @@
                 <td>@contrato.Locais.LocalRazaoSocial</td>
                 <td>@contrato.Commodity</td>
                 <td>R$ @String.Format("{0:0.00}", contrato.ValorUnitario)</td>
-                <td>@(contrato.Volume/1000) m²</td>
-                <td>@(contrato.VolumeAtual/1000) m²</td>
-                <td>@(contrato.VolumePendente/1000) m²</td>
+                <td>@(contrato.Volume) m³</td>
+                <td>@(contrato.VolumeAtual) m³</td>
+                <td>@(contrato.VolumePendente) m³</td>
                 <td>@contrato.Status</td>
                 <td>
                     <form action="/contratos/update" method="GET" class="mt-0">

@@ -211,6 +211,9 @@ go
 
 
 -- Tabela OrdensDeCarregamento
+INSERT INTO OrdensDeCarregamento (CodContrato, CodDestino, CodTransportadora, CodMotorista, TipoConjunto, PlacaA, Volume, status) values (1, 5, 3, 1, 0, 'ABC1056', 50, 1)
+INSERT INTO OrdensDeCarregamento (CodContrato, CodDestino, CodTransportadora, CodMotorista, TipoConjunto, PlacaA, PlacaB, Volume) values (2, 5, 3, 2, 1, 'POI0284', 'XYZ2348', 85)
+INSERT INTO OrdensDeCarregamento (CodContrato, CodDestino, CodTransportadora, CodMotorista, TipoConjunto, PlacaA, PlacaB, PlacaC, Volume, status) values (3, 6, 4, 4, 1, 'HUE0707', 'GUY1221', 'BEL8005', 130, 1) 
 
 
 -- Tabela NotaFiscal --

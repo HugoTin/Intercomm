@@ -85,6 +85,18 @@ public class ConjuntosController : Controller
 
 
     /*
+    ----- DELETE -----
+    */
+    public ActionResult delete (int idConjunto)
+    {
+        ConjuntosData.Delete(idConjunto);
+
+        return RedirectToAction("index");
+    }
+
+
+
+    /*
     ----- CONJUNTOS MOTORISTA -----
     */
     //READ
