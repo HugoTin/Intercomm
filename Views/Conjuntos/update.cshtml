@@ -1,0 +1,111 @@
+@model Conjuntos
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml";
+    ViewBag.Title = "Alterar Veiculos"; 
+}
+
+<form action="/conjuntos/update" method="post">
+<input type="text" name="IdConjunto" id="IdConjunto" value="@Model.IdConjunto" hidden>
+    <div class="row">
+
+        <!-- COLUNA 1 -->
+        <div class="col-md-9">
+            <fieldset class="border rounded-3 p-3 mt-1">
+                <legend class="float-none w-auto mb-0"><h5>VEICULO</h5></legend>
+                <!-- ID CONJUNTO -->
+                <div class="row">
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" value="@Model.IdConjunto" disabled>
+                    </div>
+                </div>
+                
+                <!-- ROW MOTORISTA -->
+                <div class="row">
+                    
+                    <!-- MOTORISTA -->
+                    <div class="col-md-5">
+                        <p class="mb-0">Motorista</p>
+                        <select class="form-control" asp-for="@Model.Motorista.IdMotorista" asp-items="ViewBag.Motoristas" required>
+                             <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ROw CONJUNTO -->
+                <div class="row">
+
+                    <!-- TIPO CONJUNTO-->
+                    <div class="col-md-3 mt-3">
+                        <p class="mb-0">Tipo Veiculo</p>
+                        <select class="form-control" asp-for="@Model.TipoConjunto" asp-items="Html.GetEnumSelectList<TipoConjunto>()" required>
+                             <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+
+                    <!-- PLACA A -->
+                    <div class="col-md-3 mt-3">
+                        <p class="mb-0">Placa A</p>
+                        <input class="form-control Placa" value="@Model.PlacaA" type="text" name="PlacaA" id="PlacaA" oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+
+                    <!-- PLACA B -->
+                    <div class="col-md-3 mt-3">
+                        <p class="mb-0">Placa B</p>
+                        <input class="form-control Placa" value="@Model.PlacaB" type="text" name="PlacaB" id="PlacaB" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+
+                    <!-- PLACA C -->
+                    <div class="col-md-3 mt-3">
+                        <p class="mb-0">Placa C</p>
+                        <input class="form-control Placa" value="@Model.PlacaC" type="text" name="PlacaC" id="PlacaC" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- COLUNA 2 -->
+        <div class="col">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>OPÇÔES</h5></legend>
+                <!-- BOTÂO MODAL SALVAR -->
+                <div class="row">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AlterarModal">
+                        Salvar
+                    </button>
+                </div>
+
+                <!-- BOTÂO CANCELAR-->
+                <div class="row mt-2">
+                    <a href="./" class="btn btn-secondary" role="button">Cancelar</a>
+                </div>
+
+                <!-- BOTÂO EXCLUIR - FAZ NADA - FUTURO BOTÂO MODAL EXLUIR -->
+                <div class="row mt-2">   
+                    @* <button class="btn btn-danger" type="button">Excluir</button> *@
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <!-- MODAL ALTERAR -->
+    <div class="modal fade" id="AlterarModal" tabindex="-1" role="dialog" aria-labelledby="AlterarTitleModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 class="modal-title" id="AlterarTitleModal">ALTERAR</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        DESEJA ALTERAR AS INFORMAÇÕES DO CONTRATO ATUAL?
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NÂO</button>
+                    <button class="btn btn-primary">SIM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,58 @@
+@model List<Contratos>
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml";
+    ViewBag.Title = "Contratos"; 
+    string search = ViewBag.Search;
+}
+
+
+<div class="container d-flex justify-content-center mb-3 mt-3">
+
+    <!-- PESQUISAR -->
+    <form action="/contratos/search" method="POST" class="input-group mt-0">
+        <div class="input-group w-75">
+            <input name="search" class="form-control" value=""/>
+            <button class="btn btn-outline-secondary">Pesquisar</button>
+        </div>
+    </form>
+
+    <a href="/contratos/create"><button class="btn btn-primary">Adicionar</button></a>
+    
+</div>
+<div class="container table-responsive d-flex justify-content-center">
+    <table class="table table-success table-striped">
+        <tr>
+            <th scope="col">ID Contrato</th>
+            <th scope="col">Data</th>
+            <th scope="col">Razão Social</th>
+            <th scope="col">Commodit</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Volume</th>
+            <th scope="col">VolumeAtual</th>
+            <th scope="col">VolumePendente</th>
+            <th scope="col">Status</th>
+            <th scope="col">&ensp;</th>
+        </tr>
+        @foreach (var contrato in Model)
+        {
+            <tr>
+                <td>@contrato.IdContrato</td>
+                <td>@contrato.DataInicio.ToString("dd/MM/yyyy")</td>
+                <td>@contrato.Locais.LocalRazaoSocial</td>
+                <td>@contrato.Commodity</td>
+                <td>R$ @String.Format("{0:0.00}", contrato.ValorUnitario)</td>
+                <td>@(contrato.Volume/1000) m²</td>
+                <td>@(contrato.VolumeAtual/1000) m²</td>
+                <td>@(contrato.VolumePendente/1000) m²</td>
+                <td>@contrato.Status</td>
+                <td>
+                    <form action="/contratos/update" method="GET" class="mt-0">
+                        <input type="hidden" name="IdContrato" value="@contrato.IdContrato">
+                        <button class="btn btn-primary btn-sm">Editar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

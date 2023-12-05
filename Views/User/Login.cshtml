@@ -1,0 +1,27 @@
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Login";
+}
+
+    @if(ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+<body class="login">
+    
+</body>
+<div class="login">
+    <form class="login" action='/user/login' method="post">
+        <img src="/src/img/logo.png" height="36px">
+
+        <div class=" mt-5">
+            <input type="login" name="login" class="form-control" placeholder="Usuario"/>
+        </div>
+
+        <div class="mt-2">
+            <input type="password" name="password" class="form-control" placeholder="Senha"/>
+        </div>
+
+        <button class="btn btn-primary mt-5">Entrar</button>
+    </form>
+</div>

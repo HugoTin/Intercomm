@@ -1,0 +1,151 @@
+@model Locais
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Adicionar Local"; 
+}
+
+<form action="/locais/create" method="post">
+
+    <div class="row">
+
+        <!-- COLUNA 1-->
+        <div class="col-md-9">
+            <fieldset class="border rounded-3 p-3 mt-1">
+                <legend class="float-none w-auto mb-0"><h5>DADOS DO LOCAL</h5></legend>
+
+                <!-- ROW INFORMAÇÕES -->
+                <div class="row">
+
+                    <!-- CATEGORIA -->
+                    <div class="col-md-3">
+                        <p class="mb-0">Categoria</p>
+                        <select class="form-control" asp-for="TipoLocal" asp-items="Html.GetEnumSelectList<TipoLocal>()" required>
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+
+                    <!--RAZÃO SOCIAL -->
+                    <div class="col-md-6">
+                        <p class="mb-0">Razão Social</p>
+                        <input type="text" class="form-control" name="LocalRazaoSocial" id="LocalRazaoSocial" placeholder="Razão Social" required/>
+                    </div>
+
+                    <!-- CNPJ -->
+                    <div class="col-md-3">
+                        <p class="mb-0">CPNJ</p>
+                        <input type="text" class="form-control CNPJ" name="CNPJ" id="CNPJ" placeholder="CNPJ" minlength="18" required/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- NOME FANTASIA -->
+                    <div class="col-md-7">
+                        <p class="mb-0 mt-3">Nome Fantasia</p>
+                        <input type="text" class="form-control" name="LocalNomeFantasia" id="LocalNomeFantasia" placeholder="Nome Fantasia"/>
+                    </div>
+
+                    <!-- IE -->
+                    <div class="col-md-3">
+                        <p class="mb-0 mt-3">IE</p>
+                        <input type="text" class="form-control" name="IE" id="IE" placeholder="IE" maxlength="9"/>
+                    </div>
+                </div>
+                
+                <!-- FIM ROW INFORMAÇÔES -->
+            </fieldset>
+
+
+            <fieldset class="border rounded-3 p-3 mt-1">
+                <legend class="float-none w-auto mb-0"><h5>ENDEREÇO</h5></legend>
+
+                <!-- ENDEREÇO -->
+                <div class="row">
+                    <!-- CEP -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Endereço</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control CEP" name="CEP" id="CEP" placeholder="CEP"/>
+                        </div>
+                    </div>
+
+                    <!-- Logradouro -->
+                    <div class="col-md-6">
+                        <p class="mb-0">&ensp;</p>
+                        <div class="input-group mb-3">
+                            <p class="mb-0">Logradouro</p>
+                            <input type="text" class="form-control" name="Logradouro" id="Logradouro" placeholder="Logradouro" required/>
+                        </div>
+                    </div>
+
+                    <!-- Bairro -->
+                    <div class="col-md-4">
+                        <p class="mb-0">&ensp;</p>
+                        <div class="input-group mb-3">
+                            <p class="mb-0">Bairro</p>
+                            <input type="text" class="form-control" name="Bairro" id="Bairro" placeholder="Bairro" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <!-- Numero -->
+                    <div class="col-md-2">
+                        <div class="input-group mb-3">
+                            <p class="mb-0">Numero</p>
+                            <input type="text" class="form-control" name="Numero" id="Numero" placeholder="Numero" />
+                        </div>
+                    </div>
+
+                    <!-- Complemento -->
+                    <div class="col-md-4">
+                        <div class="input-group mb-">
+                            <p class="mb-0">Complemento</p>
+                            <input type="text" class="form-control" name="Complemento" id="Complemento" placeholder="Complemento" />
+                        </div>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-md-2">
+                        <div class="input-group mb-3">
+                            <p class="mb-0">Estado</p>
+                            <select class="form-control" asp-for="Estado" asp-items="Html.GetEnumSelectList<Estados>()" required>
+                                <option disabled="" value="" selected="" hidden="">Selecione</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Cidade -->
+                    <div class="col-md-4">
+                        <div class="input-group mb-3">
+                            <p class="mb-0">Cidade</p>
+                            <input type="text" class="form-control" name="Cidade" id="Cidade" placeholder="Cidade" />
+                        </div>
+                    </div>
+                </div>
+                <!-- FIM ENDEREÇO -->
+            </fieldset>
+        </div>
+
+        <!-- COLUNA 2 -->
+        <div class="col">
+            <fieldset class="border rounded-3 p-4 mt-1">
+
+                <legend class="float-none w-auto mb-0"><h5>OPÇÔES</h5></legend>
+
+                <!-- BOTÂO ADICIONAR -->
+                <div class="row mt-0">
+                    <button class="btn btn-primary">Adicionar</button>
+                </div>
+
+                <!-- BOTÂO VOLTAR -->
+                <div class="row mt-2">
+                    <a href="./" class="btn btn-secondary" role="button">Voltar</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+
+</form>

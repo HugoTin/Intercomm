@@ -1,0 +1,143 @@
+@model Contratos
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Editar Contrato";
+}
+
+<form action="/contratos/update" method="post">
+<input type="text" name="IdContrato" id="IdContrato" value="@Model.IdContrato" hidden/>
+
+    <div class="row">
+        <div class="col-md-9">
+            <fieldset class="border rounded-3 p-3 m-1">
+                <legend class="float-none w-auto"><h5>CONTRATO</h5></legend>
+                <!-- ID CONTRATO -->
+                <div class="row">
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" value="@Model.IdContrato" disabled/>
+                    </div>
+                </div>
+
+                <!-- ROW LOCAL -->
+                <div class="row">
+                    <!-- LOCAL -->
+                    <div class="col-md-3 mb-3">
+                        <p class="mb-0">Local</p>
+                        <select class="form-control" asp-for="@Model.Locais.IdLocal"  asp-items="ViewBag.Locais">
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ROW INFORMAÇÕES -->
+                <div class="row">
+
+                    <!-- COMMODIT -->
+                    <div class="col-md-3">
+                        <p class="mb-0">Commodit</p>
+                        <select class="form-control" asp-for="Commodity" asp-items="Html.GetEnumSelectList<Commodities>()">
+                        </select>
+                    </div>
+
+                    <!-- INICIO DO CONTRATO -->
+                    <div class="col-md-3">
+                        <p class="mb-0">Inicio do Contrato</p>
+                        @{
+                            string day = "";
+                            string month = "";
+                            if (Model.DataInicio.Day < 10)
+                            {
+                                day = "0" + Model.DataInicio.Day;
+                            }else
+                            {
+                                day = Model.DataInicio.Day.ToString();
+                            }
+
+                            if (Model.DataInicio.Month < 10)
+                            {
+                                month = "0" + Model.DataInicio.Month;
+                            }else
+                            {
+                                month = Model.DataInicio.Month.ToString();
+                            }
+                        }
+                        <input type="date" value="@Model.DataInicio.Year-@month-@day" class="form-control" name="DataInicio" id="DataInicio" placeholder="Data de Inicio"/>
+                    </div>
+
+                    <!-- VOLUME -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Volume</p>
+                        <input type="text" value="@Model.Volume"class="form-control" name="Volume" id="Volume" placeholder="Volume"/>
+                    </div>
+
+                    <!-- TIPO VOLUME -->
+                    <div class="col-md-2">
+                        <p class="mb-0">&ensp;</p>
+                        <select name="Tipo" id="Tipo" class="form-control">
+                            <option value="0">Metros</option>
+                            <option value="1">Litros</option>
+                        </select>
+                    </div>
+
+                    <!-- VALOR UNITARIO -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Valor Unitario</p>
+                        <input class="form-control" type="text" value='@String.Format("{0:0.00}", Model.ValorUnitario)' name="ValorUnitario" id="ValorUnitario", placeholder="Valor Unitario">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="mb-0">Status</p>
+                        <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<Status>()">
+
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+
+
+        <!-- COLUNA 2 -->
+        <div class="col">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>OPÇÔES</h5></legend>
+                <!-- BOTÂO MODAL SALVAR -->
+                <div class="row">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AlterarModal">
+                        Salvar
+                    </button>
+                </div>
+
+                <!-- BOTÂO CANCELAR-->
+                <div class="row mt-2">
+                    <a href="./" class="btn btn-secondary" role="button">Cancelar</a>
+                </div>
+
+            </fieldset>
+        </div>
+    </div>
+
+    <!-- MODAL ALTERAR -->
+    <div class="modal fade" id="AlterarModal" tabindex="-1" role="dialog" aria-labelledby="AlterarTitleModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 class="modal-title" id="AlterarTitleModal">ALTERAR</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        DESEJA ALTERAR AS INFORMAÇÕES DO CONJUNTO ATUAL?
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NÂO</button>
+                    <button class="btn btn-primary">SIM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</form>

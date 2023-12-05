@@ -1,0 +1,90 @@
+@model Contratos
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Adicionar Contrato";
+}
+
+<form action="/contratos/create" method="post">
+
+    <div class="row">
+
+        <!-- COLUNA 1-->
+        <div class="col-md-9">
+            <fieldset class="border rounded-3 p-3 mt-1">
+                    <legend class="float-none w-auto mb-0"><h5>CONTRATO</h5></legend>
+
+                <!-- ROW LOCAL -->
+                <div class="row">
+                    
+                    <!-- LOCAL -->
+                    <div class="col-md-5 mb-3">
+                        <p class="mb-0">Local</p>
+                        <select class="form-control" asp-for="@Model.Locais.IdLocal"  asp-items="ViewBag.Locais" required>
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ROW INFORMAÇÕES -->
+                <div class="row">
+
+                    <!-- COMMODIT -->
+                    <div class="col-md-3">
+                        <p class="mb-0">Commodit</p>
+                        <select class="form-control" asp-for="Commodity" asp-items="Html.GetEnumSelectList<Commodities>()" required>
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+
+                    <!-- INICIO DO CONTRATO -->
+                    <div class="col-md-3">
+                        <p class="mb-0">Inicio do Contrato</p>
+                        <input type="date" class="form-control" name="DataInicio" id="DataInicio" placeholder="Data de Inicio"/ required>
+                    </div>
+
+                    <!-- VOLUME -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Volume</p>
+                        <input type="text" class="form-control" name="Volume" id="Volume" placeholder="Volume"/ required>
+                    </div>
+
+                    <!-- TIPO VOLUME -->
+                    <div class="col-md-2">
+                        <p class="mb-0">&ensp;</p>
+                        <select name="Tipo" id="Tipo" class="form-control">
+                            <option value="0">Metros</option>
+                            <option value="1">Litros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <!-- VALOR UNITARIO -->
+                    <div class="col-md-7 mb-3">
+                        <p class="mb-0 mt-3">Valor Unitario</p>
+                        <input type="text" class="form-control Money" name="ValorUnitario" id="ValorUnitario" placeholder="Valor Unitario"/ required>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- COLUNA 2 -->
+        <div class="col">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>OPÇÔES</h5></legend>
+
+                <!-- BOTAO ADICIONAR -->
+                <div class="row">
+                    <button class="btn btn-primary">Adicionar</button>
+                </div>
+
+                <!-- BOTÂO VOLTAR -->
+                <div class="row mt-2">
+                    <a href="./" class="btn btn-secondary" role="button">Voltar</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>

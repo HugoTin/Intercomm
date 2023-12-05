@@ -1,0 +1,57 @@
+@model List<Ordem>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Ordem";
+    string search = ViewBag.Search;
+}
+
+<div class="container d-flex justify-content-center mb-3 mt-3">
+
+        <!-- PESQUISAR -->
+        <form action="/ordem/search" method="POST" class="input-group mt-0">
+            <div class="input-group w-75">
+                <input name="search" class="form-control"/>
+                <button class="btn btn-outline-secondary">Pesquisar</button>
+            </div>
+        </form>
+
+        <a href="/ordem/create"><button class="btn btn-primary">Adicionar</button></a>
+
+</div>
+
+<div class="container table-responsive d-flex justify-content-center mt-3">
+    <table class="table table-success table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Contrato</th>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Transportadora</th>
+            <th>Motorista</th>
+            <th>Volume</th>
+            <th>Status</th>
+            <th>&ensp;</th>
+        </tr>
+        
+        @foreach (var ordem in Model)
+        {   
+            <tr>
+                <td>@ordem.IdOrdem</td>
+                <td>@ordem.Contrato.IdContrato</td>
+                <td>@ordem.Contrato.Locais.LocalRazaoSocial</td>
+                <td>@ordem.Destino.LocalRazaoSocial</td>
+                <td>@ordem.Transpor.LocalRazaoSocial</td>
+                <td>@ordem.Motorista.NomeMotorista</td>
+                <td>@ordem.Volume</td>
+                <td>@ordem.Status</td>
+                <td>
+                    <form action="/ordem/update" method="get" class="mt-0">
+                        <input type="hidden" name="IdOrdem" value="@ordem.IdOrdem">
+                        <button class="btn btn-primary btn-sm" type="submit">Editar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

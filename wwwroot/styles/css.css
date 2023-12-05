@@ -1,0 +1,186 @@
+body{
+    background-image: url("/src/img/wallpaper.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+body.login{
+    background-image: url("/src/img/wallpaper2.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+/*FONT H1, H2, H3, H4*/
+@font-face {
+    font-family: 'Inter';
+    src: url('/src/fonts/Inter-VariableFont_slnt,wght.ttf');
+}
+@font-face {
+    font-family: "Lexend Deca";
+    src: url('/src/fonts/LexendDeca-VariableFont_wght.ttf');
+}
+h1, h2, h3, h4{
+    font-family: 'Inter';
+    font-weight: 900;
+}
+
+
+/* 
+--- FORM ---
+*/
+form{
+    width: 80%;
+    margin: 10px auto;
+}
+p{
+    font-size: small;
+    color: gray;
+}
+/* CHECKBOX */
+.checkbox-lg .form-check-input{
+    top: .8rem;
+    scale: 1.4;
+    margin-right: 0.7rem;
+}
+/* SHADOW */
+fieldset{
+    background-color: #fafafa;
+    box-shadow: 2px 2px 3px 1px rgba(0,0,0,0.25);
+}
+input{
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0,0,0,0.1);
+}
+.form-control:disabled{
+    background-color: #ccc;
+}
+button{
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0,0,0,0.1);
+}
+
+
+/*
+--- LOGIN ---
+*/
+div.login{
+    display: grid;
+    place-items: center;
+    min-height: 70vh;
+}
+form.login{
+    width: 256px;
+    text-align: center;
+}
+form.login input{
+    background-color: #4b843c;
+    color: white;
+    font-family: 'Lexend Deca';
+}
+form.login input::placeholder{
+    color: #FFF;
+    text-align: center;
+    font-family: 'Lexend Deca';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+form.login button{
+    font-family: 'Lexend Deca';
+    background-color: #4b843c;
+    color: black;
+    width: 100%;
+    border: black;
+}
+form.login button:hover{
+    background-color: #4b843c;
+    color: black;
+    border: black;
+}
+
+
+/*
+--- NAVBAV, TITLE ---
+*/
+.navbar, .header{
+    background-color: #4b843c;
+    border-bottom: #D6c427 solid 3px;
+}
+.title-inter{
+    text-shadow: 0px 6px 4px rgba(0,0,0,0.25);
+}
+.text-white{
+    color: white;
+}
+.text-green{
+    color: #A8DA57;
+}
+
+
+/*
+--- TABLE ---
+*/
+.table{
+    border-radius: 6px;
+    overflow: hidden;
+}
+.home td:hover{
+    background-color: #afb0b2;
+}
+
+
+/*
+--- BOOTSTRAP MODEL READONLY ---
+*/
+.no-border:read-only {
+    background-color:rgba(0, 0, 0, 0);
+    color: black;
+    border: none;
+    outline:none;
+    height:30px;
+    transition:height 1s;
+    -webkit-transition:height 1s;
+}
+
+
+/* 
+--- CHOICES ---
+*/
+.choices[data-type*="select-one"] select.choices__input {
+    display: block !important;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+div .choices__inner{
+    background-color: #fafafa;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0,0,0,0.1);
+}
+div .choices.is-disabled .choices__inner, .choices.is-disabled .choices__input{
+    background-color: #ccc;
+}
+
+a#a{
+    text-decoration:none
+}
+
+.desativado {
+    --bs-table-bg: #67736d;
+    --bs-table-striped-bg: #67736d;
+    background-color: gray;
+    border-color: gray;
+}
+.desativado:hover {
+    --bs-table-bg: #67736d;
+    --bs-table-striped-bg: #67736d;
+    background-color: gray;
+    border-color: gray;
+}
+.desativado:active {
+    --bs-table-bg: #67736d;
+    --bs-table-striped-bg: #67736d;
+    background-color: gray;
+    border-color: gray;
+}

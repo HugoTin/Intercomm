@@ -1,0 +1,56 @@
+@model List<Motoristas>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Motoristas"    ;
+}
+
+<div class="container d-flex justify-content-center mb-3 mt-3">
+
+    <!-- PESQUISAR -->
+    <form action="/motoristas/search" method="POST" class="input-group mt-0">
+        <div class="input-group w-75">
+            <input name="search" class="form-control"/>
+            <button class="btn btn-outline-secondary">Pesquisar</button>
+        </div>
+    </form>
+
+    <a href="/motoristas/create"><button class="btn btn-primary">Adicionar</button></a>
+    
+</div>
+<div class="container table-responsive d-flex justify-content-center mt-3">
+    <table class="table table-success table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>CNH</th>
+            <th>&ensp;</th>
+        </tr>
+        @{string classe = "";}
+        @foreach (var motorista in Model)
+        {   
+            if (motorista.Ativo == Ativo.Não)
+            {
+                classe = "desativado";
+            }
+            else
+            {
+                classe = "ativo";
+            }
+            <tr class="@classe">
+                <td>@motorista.IdMotorista</td>
+                <td>@motorista.NomeMotorista</td>
+                <td id="CPF" class="CPF">@motorista.CPF</td>
+                <td>@motorista.CNH</td>
+                <td>
+                    <form action="/motoristas/update" method="GET" class="mt-0">
+                        <input type="hidden" name="IdMotorista" value="@motorista.IdMotorista">
+                        <button class="btn btn-primary btn-sm @classe">Editar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

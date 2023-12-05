@@ -1,0 +1,11 @@
+"UPDATE OrdensDeCarregamento SET 
+            (CodContrato = @CodContrato,
+             CodDestino = @CodDestino,
+             CodTransportadora = @CodTransportadora,
+             CodMotorista = @CodMotorista,
+             TipoConjunto = @TipoConjunto,
+             PlacaA = @PlacaA,
+             PlacaB = @PlacaB,
+             PlacaC = @PlacaC,
+             Volume = @Volume,
+             Status = @Status)";

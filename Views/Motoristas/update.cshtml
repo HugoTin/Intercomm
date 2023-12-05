@@ -1,0 +1,151 @@
+@model Motoristas
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Alterar Motorista";
+    Locais Local = new();
+}
+
+<form action="update" method="post">
+<input type="text" name="IdMotorista" id="IdMotorista" value="@Model.IdMotorista" hidden/> @* TRUE ID MOTORISTA *@
+
+    <div class="row">
+
+        <!-- COLUNA 1 -->
+        <div class="col-md-9">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>DADOS</h5></legend>
+
+                <!-- ID MOTORISTA -->
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="mb-0">ID MOTORISTA</p>
+                        <input class="form-control" type="text" value="@Model.IdMotorista" disabled/>
+                    </div>
+
+                    <!-- ATIVO -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Ativo</p>
+                        <select class="form-control" asp-for="@Model.Ativo" asp-items="Html.GetEnumSelectList<Ativo>()">
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ROW 1 -->
+                <div class="row">
+                    <!-- NOME -->
+                    <div class="col-md-5">
+                        <p class="mb-0">Nome Completo</p>
+                        <input type="text" class="form-control" id="NomeMotorista" name="NomeMotorista" value="@Model.NomeMotorista">
+                    </div>
+
+                    <!-- CPF -->    
+                    <div class="col-md-3">
+                        <p class="mb-0">CPF</p>
+                        <input type="text" class="form-control CPF" id="CPF" name="CPF" maxlength="11" value="@Model.CPF">
+                    </div>
+
+                    <!-- CNH -->    
+                    <div class="col-md-3">
+                        <p class="mb-0">CNH</p>
+                        <input type="text" class="form-control CNH" id="CNH" name="CNH" maxlength="10" value="@Model.CNH">
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+
+
+        <!-- COLUNA 2 -->
+        <div class="col">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>TRANSPORTADORAS</h5></legend>
+
+                <!-- BOTAO MODAL TRANSPORTADORAS -->
+                <div class="row mt-0">
+                    <button id="BotaoTransportadoras" name="BotaoTransportadoras" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTrasnporId">
+                        Transportadoras
+                    </button>
+                </div>
+            </fieldset>
+
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>OPÇÔES</h5></legend>
+
+                <!-- BOTÂO MODAL ALTERAR-->
+                <div class="row mt-0">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AlterarId">
+                        Salvar
+                    </button>
+                </div>
+
+                <!-- BOTÂO VOLTAR -->
+                <div class="row mt-2">
+                    <a href="./" class="btn btn-secondary" role="button">Cancelar</a>
+                </div>
+
+                <!-- BOTÂO EXCLUIR -->
+                <div class="row mt-2">   
+                    @* <button class="btn btn-danger" type="button">Excluir</button> *@
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    
+    
+    <!-- MODAL ALTERAR -->
+    <div class="modal fade" id="AlterarId" tabindex="-1" role="dialog" aria-labelledby="AlterarTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 class="modal-title" id="AlterarTitleId">ALTERAR</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        DESEJA REALMENTE ALTERAR O MOTORISTA ATUAL?
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+
+                    <button class="btn btn-primary">Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MODAL TRANSPORTADORAS -->
+    <div class="modal fade" id="modalTrasnporId" tabindex="-1" role="dialog" aria-labelledby="modalTransporTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTransporTitle">TRANSPORTADORAS</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                <div class="modal-body">
+                    <table class="table table-success table-striped">
+                    </table>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <select class="form-control locais" asp-for="@Local.IdLocal" asp-items="@ViewBag.Transportadoras">
+                                <option disabled="" value="" selected="" hidden="">Selecione</option>
+                            </select>
+                        </div>
+                        <div class="col mt-1">
+                            <button class="btn btn-primary" type="button" id="ButtonAddTrasnpor" disabled>Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">FECHAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="/script/motoristas.js"></script>
+<script>
+    const locais = new Choices(document.querySelector(".locais"));
+</script>

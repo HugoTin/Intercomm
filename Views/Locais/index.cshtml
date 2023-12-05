@@ -1,0 +1,71 @@
+@model List<Locais>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Locais";
+    string search = ViewBag.Search;
+    Locais locais = new();
+}
+
+<div class="container d-flex justify-content-center mb-3 mt-3">
+
+    <!-- PESQUISAR -->
+    <form action="/locais/search" method="POST" class="input-group mt-0">
+        <div class="input-group w-75">
+            <input name="search" class="form-control" value="@search"/>
+            <button class="btn btn-outline-secondary">Pesquisar</button>
+        </div>
+        <div class="input-group w-50 mt-2">
+            <span class="input-group-text">Categoria</span>
+            <select class="form-control choices-single" asp-for="@locais" asp-items="Html.GetEnumSelectList<TipoLocal>()">
+                <option selected="" value="-1">Todas</option>
+            </select>
+        </div>
+    </form>
+
+    <a href="/locais/create"><button class="btn btn-primary">Adicionar</button></a>
+
+</div>
+
+<div class="container table-responsive d-flex justify-content-center mt-3">
+    <table class="table table-success table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Razao Social</th>
+            <th>Nome Fantasia</th>
+            <th>CNPJ</th>
+            <th>Tipo Local</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>&ensp;</th>
+        </tr>
+        @{string classe = "";}
+        @foreach (var local in Model)
+        {
+            if (local.Ativo == Ativo.Não)
+            {
+                classe = "desativado";
+            }
+            else
+            {
+                classe = "ativo";
+            }
+            <tr class="@classe">
+                <td>@local.IdLocal</td>
+                @* <td>@Html.DisplayFor(modelItem => local.IdLocal)</td> *@
+                <td>@local.LocalRazaoSocial</td>
+                <td>@local.LocalNomeFantasia</td>
+                <td id="CNPJ" class="CNPJ">@local.CNPJ</td>
+                <td>@local.TipoLocal</td>
+                <td>@local.Cidade</td>
+                <td>@local.Estado</td>
+                <td>
+                    <form action="/locais/update" method="GET" class="mt-0">
+                        <input type="hidden" name="IdLocal" value="@local.IdLocal">
+                        <button class="btn btn-primary btn-sm">Editar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

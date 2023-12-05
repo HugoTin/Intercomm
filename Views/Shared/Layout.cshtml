@@ -1,0 +1,85 @@
+@{
+    string? title = (ViewBag.Title ?? string.Empty) as string;
+    bool index = (ViewBag.Index ?? false);
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>InterComm</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BootStrap e Jquery-->
+    @*CSS E SCRIPT DO BOOTSTRAP 5*@
+    <link rel="stylesheet" href="/lib/bootstrap5/css/bootstrap.min.css">
+    <script src="/lib/bootstrap5/js/bootstrap.min.js"></script>
+
+    @*CSS PADRAO*@
+    <link rel="stylesheet" href="/styles/css.css">
+
+    @*JQUERY*@
+    <script src="/lib/jquery/jquery.js"></script>
+
+    @*BIBLIOTECA JQUERY PARA APLICAR MASCARAS*@
+    <script src="/lib/jquery/jquery.mask.js"></script>
+    @*MASCARAS*@
+    <script src="/script/mask.js"></script>
+
+    @*CHOICES*@
+    <link rel="stylesheet" href="/lib/choices/styles/choices.min.css"/>
+    <script src="/lib/choices/scripts/choices.min.js"></script>
+
+</head>
+
+<body>
+    @if(!string.IsNullOrEmpty(title) && title != "Login")
+    {
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                
+                <a class="navbar-brand" href="/">
+                    <h1 class="title-inter text-white">INTER<span class="text-green">COMM</span></h1>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav me-auto">
+                        
+                    </ul> 
+                    
+                    <ul class="navbar-nav d-flex justify-content-end align-items-end">
+                        <li class="nav-item">
+                            @if (!string.IsNullOrEmpty(title))
+                            {
+                                <a id="a" href="./"><h3 class="title-inter text-white">@title.ToUpper()</h3></a>
+                            }
+                        </li>
+                        <li class="nav-item align-items-end">
+                            @if (index == true)
+                            {
+                                <a class="" href="/user/logout" >
+                                    <img src="/src/img/logout.png" height="50px">
+                                </a>
+                            }else
+                            {
+                                <a class="nav-link active" href="" >
+                                    <img src="" alt="" height="50px">
+                                </a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+    @RenderBody()
+</body>
+</html>

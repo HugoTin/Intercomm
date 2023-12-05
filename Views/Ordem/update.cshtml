@@ -1,0 +1,169 @@
+@model Ordem
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Alterar Ordem";
+
+    Conjuntos conjuntos = new();
+}
+
+<form action="/ordem/update" method="post">
+<input class="form-control" type="hidden" name="IdOrdem" id="IdOrdem" hidden value="@Model.IdOrdem">
+    <div class="row">
+
+        <!-- COLUNA 1 -->
+        <div class="col-md-9">
+            <fieldset class="border rounded-3 p-3 mt-1">
+                <legend class="float-none w-auto mb-0"><h5>ORDEM</h5></legend>
+                
+                <!-- ID ORDEM -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <input class="form-control" type="text" name="IdOrdem" id="IdOrdem" disabled value="@Model.IdOrdem">
+                    </div>
+                </div>
+
+                <!-- ROW LOCAL CONTRATO -->
+                <div class="row">
+                    
+                    <!-- LOCAL -->
+                    <div class="col-md-6 mb-3">
+                        <p class="mb-0">Saida</p>
+                        <select class="form-control local-contrato" asp-for="@Model.Contrato.Locais.IdLocal" asp-items="ViewBag.Locais">
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+
+                    <!-- CONTRATO -->
+                    <div class="col-md-6 mb-3">
+                        <p class="mb-0">Contrato</p>
+                        <select class="form-control contrato" asp-for="@Model.Contrato.IdContrato" asp-items="ViewBag.Contratos">
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- ROW DESTINO TRANSPOR -->
+                <div class="row">
+                    
+                    <!-- DESTINO -->
+                    <div class="col-md-6 mb-3">
+                        <p class="mb-0">Destino</p>
+                        <select class="form-control destino" asp-for="@Model.Destino.IdLocal" asp-items="ViewBag.Destinos">
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+
+                    <!-- TRANSPOR -->
+                    <div class="col-md-6 mb-3">
+                        <p class="mb-0">Transportadora</p>
+                        <select class="form-control transpor" asp-for="@Model.Transpor.IdLocal" asp-items="ViewBag.Transportadoras">
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ROW VOLUME -->
+                <div class="row">
+                    <!-- VOLUME -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Volume</p>
+                        <input class="form-control" id="Volume" name="Volume" type="text" value="@Model.Volume">
+                    </div>
+
+                    <!-- STATUS -->
+                    <div class="col-md-3">
+                        <p class="mb-0">Status</p>
+                        <select class="form-control" asp-for="@Model.Status" asp-items="Html.GetEnumSelectList<Status>()"></select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- ROW CONJUNTO -->
+            <fieldset class="border rounded-3 p-3 mt-0">
+                <legend class="float-none w-auto mb-0"><h5>Veiculo</h5></legend>
+
+                <!-- ROW 1 CONJUNTO -->
+                <div class="row">
+
+                    <!-- MOTORISTA -->
+                    <div class="col-md-5">
+                        <p class="mb-0">Motorista</p>
+                        <select class="form-control motorista" asp-for="@Model.Motorista.IdMotorista" asp-items="ViewBag.Motoristas">
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+
+                    <!-- CHECK MOSTRAR-->
+                    <div class="col-md-1">
+                        <p class="mb-0">Mostrar Todos</p>
+                        <div class="form-check checkbox-lg ">
+                            <input class="form-check-input checkbox-lg" type="checkbox" name="checkMostrar" id="checkMostrar" checked>
+                        </div>
+                    </div>
+
+                    <!-- CONJUNTO -->
+                    <div class="col-md-6">
+                        <p class="mb-0">Veiculo</p>
+                        <select class="form-control conjunto" asp-for="@conjuntos.IdConjunto" disabled>
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- ROW 2 CONJUNTO -->
+                <div class="row mt-2">
+
+                    <!-- TIPO DO CONJUNTO -->
+                    <div class="col-md-3">
+                        <p class="mb-0">Tipo Veiculo</p>
+                        <input class="form-control" type="text" id="TipoConjunto" name="TipoConjunto" disabled value="@Model.TipoConjunto">
+                        <input class="form-control" type="hidden" id="TipoConjunto" name="TipoConjunto" value="@Model.TipoConjunto">
+                    </div>
+
+                    <!-- PLACA A -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Placa A</p>
+                        <input class="form-control Placa" value="@Model.PlacaA" type="text" name="PlacaA" id="PlacaA" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+
+                    <!-- PLACA B -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Placa B</p>
+                        <input class="form-control Placa" value="@Model.PlacaB" type="text" name="PlacaB" id="PlacaB" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+
+                    <!-- PLACA C -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Placa C</p>
+                        <input class="form-control Placa" value="@Model.PlacaC" type="text" name="PlacaC" id="PlacaC" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- COLUNA 2 -->
+        <div class="col">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>OPÇÔES</h5></legend>
+
+                <!-- BOTAO ADICIONAR -->
+                <div class="row">
+                    <button class="btn btn-primary">Alterar</button>
+                </div>
+
+                <!-- BOTÂO CANCELAR -->
+                <div class="row mt-2">
+                    <a href="./" class="btn btn-secondary" role="button">Cancelar</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+</form>
+
+<script src="/script/ordem.js"></script>

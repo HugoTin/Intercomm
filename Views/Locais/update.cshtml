@@ -1,0 +1,297 @@
+@model Locais
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Alterar Local"; 
+}
+
+<form action="/locais/update" method="post">
+<input type="text" name="IdLocal" id="IdLocal" value="@Model.IdLocal" hidden/> @* TRUE id local *@
+
+    <div class="row"> 
+
+        <!-- COLUNA 1-->       
+        <div class="col-md-9">
+    
+            <!-- ROWS INFORMAÇÔES -->
+            <fieldset class="border rounded-3 p-3 mt-1">
+                <legend class="float-none w-auto mb-0"><h5>DADOS DO LOCAL</h5></legend>
+
+                <!-- ID LOCAL -->
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="mb-0">ID LOCAL</p>
+                        <input class="form-control" type="text" value="@Model.IdLocal" disabled/>
+                    </div>
+
+                    <!-- ATIVO -->
+                    <div class="col-md-1">
+                        <p class="mb-0">ATIVO</p>
+                        <select class="form-control" asp-for="@Model.Ativo" asp-items="Html.GetEnumSelectList<Ativo>()">
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- TIPO LOCAL -->
+                    <div class="col-md-3">
+                        <p class="mb-0">Tipo</p>
+                        <select class="form-control" asp-for="TipoLocal" asp-items="Html.GetEnumSelectList<TipoLocal>()">
+                            <option disabled="" value="" selected="" hidden="">Selecione</option>
+                        </select>
+                    </div>
+
+                    <!-- RAZAO SOCIAL -->
+                    <div class="col-md-6">
+                        <p class="mb-0">Razão Social</p>
+                        <input value="@Model.LocalRazaoSocial" type="text" class="form-control" name="LocalRazaoSocial" id="LocalRazaoSocial" placeholder="Razão Social"/>
+                    </div>
+
+                    <!-- CNPJ -->
+                    <div class="col-md-3">
+                        <p class="mb-0">CNPJ</p>
+                        <input value="@Model.CNPJ" type="text" class="form-control CNPJ" name="CNPJ" id="CNPJ" placeholder="CNPJ" minlength="18"/>
+                    </div>           
+                </div>
+
+                <div class="row">
+                    <!-- NOME FANTASIA -->
+                    <div class="col-md-7">
+                        <p class="mb-0 mt-3">Nome Fantasia</p>
+                        <input value="@Model.LocalNomeFantasia" type="text" class="form-control" name="LocalNomeFantasia" id="LocalNomeFantasia" placeholder="Nome Fantasia"/>
+                    </div>
+                    
+                    <!-- IE -->
+                    <div class="col-md-3">
+                        <p class="mb-0 mt-3">IE</p>
+                        <input value="@Model.IE" type="text" class="form-control" name="IE" id="IE" placeholder="IE" maxlength="9"/>
+                    </div>
+                </div>
+            </fieldset>
+            <!-- FIM ROWS INFORMAÇÔES -->
+
+
+
+            <!-- ENDEREÇO -->
+            <fieldset class="border rounded-3 p-3 mt-1">
+                <legend class="float-none w-auto mb-0"><h5>ENDEREÇO</h5></legend>
+                <div class="row">
+                    <!-- CEP -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Endereço</p>
+                        <div class="input-group mb-3">
+                            <input value="@Model.CEP" type="text" class="form-control CEP" name="CEP" id="CEP" placeholder="CEP"/>
+                        </div>
+                    </div>
+
+                    <!-- Logradouro -->
+                    <div class="col-md-6">
+                        <p class="mb-0">Logradouro</p>
+                        <div class="input-group mb-3">
+                            <input value="@Model.Logradouro" type="text" class="form-control" name="Logradouro" id="Logradouro" placeholder="Logradouro" />
+                        </div>
+                    </div>
+
+                    <!-- Bairro -->
+                    <div class="col-md-4">
+                        <p class="mb-0">Bairro</p>
+                        <div class="input-group mb-3">
+                            <input value="@Model.Bairro" type="text" class="form-control" name="Bairro" id="Bairro" placeholder="Bairro" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Numero -->
+                    <div class="col-md-2">
+                        <p class="mb-0">Numero</p>
+                        <div class="input-group">
+                            <input value="@Model.Numero" type="text" class="form-control" name="Numero" id="Numero" placeholder="Numero" />
+                        </div>
+                    </div>
+
+                    <!-- Complemento -->
+                    <div class="col-md-4">
+                        <p class="mb-0">Complemento</p>
+                        <div class="input-group">
+                            <input value="@Model.Complemento" type="text" class="form-control" name="Complemento" id="Complemento" placeholder="Complemento" />
+                        </div>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-md-2">
+                        <p class="mb-0">UF</p>
+                        <div class="input-group">
+                            <select class="form-control" asp-for="Estado" asp-items="Html.GetEnumSelectList<Estados>()">
+                                <option disabled="" value="" selected="" hidden="">Selecione</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Cidade -->
+                    <div class="col-md-4">
+                        <p class="mb-0">Cidade</p>
+                        <div class="input-group">
+                            <input value="@Model.Cidade" type="text" class="form-control" name="Cidade" id="Cidade" placeholder="Cidade" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <!-- FIM ENDEREÇO -->
+        </div>
+        <!-- FIM COLUNA 1 !-->
+
+
+
+        <!-- COLUNA 2-->
+        <div class="col">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>CONTATO</h5></legend>
+                <!-- BOTÂO MODAL RESPONSAVEIS -->
+                <div class="row">
+                    <button type="button" class="btn btn-success ButtonResponsaveis" data-bs-toggle="modal" data-bs-target="#ModalResponsaveis" id="ButtonResponsaveis">
+                        Responsaveis
+                    </button>
+                </div>
+
+                <!-- BOTÂO MODAL EMAILS -->
+                <div class="row mt-2">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalEmails" id="ButtonEmails">
+                        E-mails
+                    </button>
+                </div>
+
+                <!-- BOTÂO MODAL TELEFONES -->
+                <div class="row mt-2">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalTelefones" id="ButtonTelefones">
+                        Telefones
+                    </button>
+                </div>
+            </fieldset>
+
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>OPÇÔES</h5></legend>
+
+                <!-- BOTÃO MODAL UPDATE -->
+                <div class="row">   
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#Alterar">
+                        Salvar
+                    </button>
+                </div>
+
+                <!-- BOTÂO CANCELAR -->
+                <div class="row mt-2">   
+                    <a href="./" class="btn btn-secondary" role="button">Cancelar</a>
+                </div>
+
+                <!-- BOTÂO EXCLUIR - FAZ NADA - FUTURO BOTAO MODAL EXLCUIR -->
+                <div class="row mt-2">   
+                    @* <button class="btn btn-danger" type="button">Excluir</button> *@
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+
+
+    <!-- MODAL RESPONSAVEIS -->
+    <div class="modal fade modal-lg" id="ModalResponsaveis" tabindex="-1" role="dialog" aria-labelledby="ModalIdResponsaveis" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalIdResponsaveis">Responsaveis</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @*MODAL BODY RESPONSAVEIS*@
+                <div class="modal-body">
+                    <table class="table table-success table-striped">
+                    </table>
+                    <div class="input-group">
+                        <input class="form-control" type="text" id="InputModalResponsaveis">
+                        <button class="btn btn-primary" type="button" id="ButtonCreateResponsavel">Adicionar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- MODAL EMAILS -->
+    <div class="modal fade modal-lg" id="ModalEmails" tabindex="-1" role="dialog" aria-labelledby="ModalIdEmails" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalIdEmails">E-mails</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @*MODAL BODY EMAILS*@
+                <div class="modal-body">
+                    <table class="table table-success table-striped">
+                    </table>
+                    <div class="input-group">
+                        <input class="form-control" type="text" id="InputModalEmails">
+                        <button class="btn btn-primary" type="button" id="ButtonCreateEmail">Adicionar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <!-- MODAL TELEFONES -->
+    <div class="modal fade modal-lg" id="ModalTelefones" tabindex="-1" role="dialog" aria-labelledby="ModalIdTelefones" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalIdTelefones">Telefones</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @*MODAL BODY TELEFONES*@
+                <div class="modal-body">
+                    <table class="table table-success table-striped">
+                    </table>
+                    <div class="input-group">
+                        <input class="form-control TELEFONE" type="text" id="InputModalTelefones">
+                        <button class="btn btn-primary" type="button" id="ButtonCreateTelefone">Adicionar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <!-- MODAL CONFIRMAÇÂO UPDATE -->
+    <div class="modal fade" id="Alterar" tabindex="-1" role="dialog" aria-labelledby="IdAlterar" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="IdAlterar">ALTERAR</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">   
+                        DESEJA ALTERAR AS INFORMAÇÕES DO LOCAL ATUAL?
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NÃO</button>
+                    <button class="btn btn-primary">SIM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+<script src="/script/modal.js"></script>

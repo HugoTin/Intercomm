@@ -1,0 +1,57 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    Layout = "/Views/Shared/Layout.cshtml"; 
+    ViewBag.Title = "Adicionar Motorista";
+}
+
+<form action="create" method="post">
+
+    <div class="row">
+
+        <!-- COLUNA 1 -->
+        <div class="col-md-9">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>DADOS</h5></legend>
+
+                <!-- ROW MOTORISTA -->
+                <div class="row">
+                    <!-- NOME -->
+                    <div class="col-md-5">
+                        <p class="mb-0">Nome Completo</p>
+                        <input type="text" class="form-control" id="NomeMotorista" name="NomeMotorista" required>
+                    </div>
+
+                    <!-- CPF -->    
+                    <div class="col-md-3">
+                        <p class="mb-0">CPF</p>
+                        <input type="text" class="form-control CPF" id="CPF" name="CPF" maxlength="11" minlength="14" required>
+                    </div>
+
+                    <!-- CNH -->    
+                    <div class="col-md-3">
+                        <p class="mb-0">CNH</p>
+                        <input type="text" class="form-control CNH" id="CNH" name="CNH" maxlength="11" minlength="9" required>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- COLUNA 2 -->
+        <div class="col">
+            <fieldset class="border rounded-3 p-4 mt-1">
+                <legend class="float-none w-auto"><h5>OPÇÔES</h5></legend>
+
+                <!-- BOTAO ADICIONAR -->
+                <div class="row mt-0">
+                    <button type="summit" class="btn btn-primary">Adicionar</button>
+                </div>
+
+                <!-- BOTAO VOLTAR -->
+                <div class="row mt-2">
+                    <a href="./" class="btn btn-secondary" role="button">Voltar</a>
+                </div>
+            </fieldset>
+        </div>
+    </div
+    
+</form>
